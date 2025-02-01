@@ -4,68 +4,46 @@
         <meta charset="UTF-8">
         <meta name = "viewport" content = "width=device-width,initial-scale=1.0">
         <title>My Resume</title>
-        <style>
-            body{
-                margin:20px;
-                color:#333;
-                line-height:1.2;
-            }
-            h2,h4{
-                margin-top:20px;
-                font-weight: bold;
-            }
-            hr{
-                border : 1px solid #ccc;
-            }
-            ul{
-                margin-bottom: 15px;
-                padding-left:20px;
-            }
-            ul li{
-                margin-top: 10px;
-                padding-left:5px;
-                margin-bottom: 8px;
-            }
-            a{
-                color:#0066cc;
-            }
-            a:hover{
-                text-decoration: underline;
-            }
-        </style>
+        <link
+            rel = "stylesheet" , href = "style.css"
+            />
     </head>
 
-    <body style="margin: 20px;">
-        <h2 style = "text-align: center;">RESHMA JOICE</h2>
-        <div style="text-align: center;" > +91 8590841202 | <a href = "https://mail.google.com/mail/?view=cm&fs=1&to=reshma.kokkat@gmail.com">Mail id</a> | <a href = "https://www.linkedin.com/in/reshmajoice">LinkedIn </a></div>
+    <body>
+        <h2>RESHMA JOICE</h2><br />
+        <div class = "info">+91 8590841202 | <a href = "https://mail.google.com/mail/?view=cm&fs=1&to=reshma.kokkat@gmail.com">Mail id</a> | <a href = "https://www.linkedin.com/in/reshmajoice">LinkedIn</a> | <a href = "https://github.com/reshmakokkat">Github</a></div>
     <hr />
     <p>An enthusiastic and adaptable individual with a passion for continuous learning and growth. Thrives in dynamic environments, enjoys tackling challenges, and is committed to learning and growing alongside a progressive organization. Focused on applying skills to create meaningful contributions while continuously seeking opportunities for personal and professional development. Works effectively both independently and collaboratively, always eager to take on new opportunities to learn and make a positive impact.</p>
 <h4>EDUCATION</h4>
 <hr />
+<div class = "edu">
 <b>College of Engineering Trivandrum</b><br />
-B.Tech in Electrical and Electronics Engineering <div style="text-align: end; margin-left: 20px;"> May 2024 </div><br />
-<b>ST.Joseph's H.S.S Vilakkumadom</b><br />
-Class XII <div style="text-align: end; margin-left: 20px;">May 2020</div>
+<div class = "institute">B.Tech in Electrical and Electronics Engineering </div><div class = "date">May 2024</div><br /></div>
+<div class = "edu"><b>ST.Joseph's H.S.S Vilakkumadom</b><br />
+<div class = "institute">Class XII</div><div class = "date">May 2020</div></div>
 <h4>INTERNSHIP</h4>
 <hr />
 <b>KSEB 110 KV Substation, Pala</b><br />
 <ul>
+    <div class = "description">
     <li>Gained practical knowledge about the transmission wing of the Power System and learned how electrical transmission works at various levels.</li>
-<li>Learnt the procedures for handling electrical faults, implementing recovery processes, and ensuring safety measures while attending to them</li>
+<li>Learnt the procedures for handling electrical faults, implementing recovery processes, and ensuring safety measures while attending to them</li></div>
 </ul>
 <h4>PROJECTS</h4>
 <hr />
 <ul>
-    <li><b>Bipolar Hybrid Circuit Breaker</b></li>
+    <li><b><a href = "./project1.html">Bipolar Hybrid Circuit Breaker</a></b></li>
         <ul>
+            <div class = "description">
             <li>Engineered a Bipolar Hybrid DC Circuit Breaker using Arduino UNO, current sensors, and relay switches. Enhanced circuit reliability and optimized fault response time compared to previous models.</li>
-            <li>Developed Arduino code to detect system faults and operate relay switches with sensors, gradually reducing the current to achieve artificial zero current crossing.</li>
+            <li>Developed Arduino code to detect system faults and operate relay switches with sensors, gradually reducing the current to achieve artificial zero current crossing.</li></div>
         </ul>
     <li><b>Colour Sensor Prototype</b></li>
         <ul>
+            <div class = "description">
         <li>Designed and built a colour sensor prototype using an RGB diffuser LED and an LDR sensor to detect and identify colours based on variations in light intensity and wavelength.</li>
         <li>Developed and implemented Arduino code to process the output from the LDR sensor and pass it through a Multi-Layer Perceptron (MLP) network, enabling the system to accurately identify the colour based on sensor data.</li>
-        <li>Demonstrated the detected colour on an LCD screen for visual feedback</li>
+        <li>Demonstrated the detected colour on an LCD screen for visual feedback</li></div>
     </ul>
 </ul>
 <h4>SKILLS</h4>
@@ -74,7 +52,7 @@ Class XII <div style="text-align: end; margin-left: 20px;">May 2020</div>
       <li><b>Programming Languages:</b> Java, Arduino UNO, SQL.</li>
       <li><b>Tools & Technologies:</b>Simulink, ETAP, MATLAB, Microsoft Office.</li> 
         <li><b>Data Analytics:</b>Data analysis and visualization.</li> 
-        <li><b>Soft Skills:</b>Leadership, Attention to detail and Communication.</li> 
+        <li><b>Soft Skills:</b>Leadership, Attention to detail and Communication.</li>
     </ul>
  <h4>CERTIFICATIONS</h4>  
  <hr />
@@ -86,7 +64,7 @@ Class XII <div style="text-align: end; margin-left: 20px;">May 2020</div>
  <hr />
  <b>Coordinator,Dhwani</b>
  <ul>
-    <li><div style="margin-bottom: 10px;">Coordinated the ordering, and distribution of T-shirts for the college fest, ensuring timely delivery and quality standards. Managed a team to handle the distribution addressed any issues related to T-shirt sizes and quantities.</div> </li>
+    <li>Coordinated the ordering, and distribution of T-shirts for the college fest, ensuring timely delivery and quality standards. Managed a team to handle the distribution addressed any issues related to T-shirt sizes and quantities.</li>
  </ul>
  <b>Volunteer for H2O, Helping Hands Organization</b>
  <ul>

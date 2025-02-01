@@ -1,0 +1,39 @@
+body{
+    padding: 10px 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h2{
+    color: darkblue;
+    font-weight: bold;
+    text-align: center;
+}
+.info{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+p{
+    font-family: Arial, Helvetica, sans-serif;
+}
+hr{
+    font-weight: bold;
+}
+.date{
+    font-weight: bold;
+    text-align: end;
+}
+.institute{
+    font-weight: 500;
+    font-style: italic;
+}
+.description{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding: 2px;
+}
+h4{
+    color: darkblue;
+}
+ul{
+    line-height: 0.6cm;
+}

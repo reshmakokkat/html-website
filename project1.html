@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name = "viewport" content = "width=device-width,initial-scale=1.0">
+        <title>Bipolar Hybrid DCCB</title>
+        <link
+        rel = "stylesheet" href = "./projectstyle.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <h2>Bipolar Hybrid DC Circuit Breaker</h2>
+        <hr />
+        <p>
+            Unlike AC, DC lacks a natural zero crossing. The proposed mechanism utilizes
+            two switches along with two diodes to reverse the direction of the current flow
+            and clear the fault. The DCCB is placed along with the source and load, and an
+            AC circuit breaker is connected in series, as shown in figure. Here, there is
+            no need for additional inductance, as the line inductance itself is used here. The
+            proposed DCCB helps to create zero crossing, and the AC circuit breaker isolates
+            the whole circuit during the fault. The included surge arrestor can be removed
+            if the breaker is used close to the voltage source. A surge arrestor helps prevent
+            damage to the circuit by diverting the excess voltage to the ground. The hybrid
+            DCCB consists of two mechanical switches, and capacitors are connected parallel
+            to each mechanical switch with redirecting diodes. Both switches are operated
+            at different times, and they are controlled by a control signal.</p>
+            <img src = "./Screenshot (7).png" alt = "circuit diagram"/>
+            <h3>Working</h3>
+            <hr />
+                <ol>
+                    <li>
+                        <b>Stage 1 :</b> In stage 1, both mechanical switches (SW1 and SW2) are closed,
+                and the current flows through SW1, the power line, the load impedance,
+                and SW2. At this stage, the capacitors have no charge, and the redirecting
+                diodes are in the OFF state.
+                    </li>
+                    <li>
+                        <b>Stage 2 :</b> In stage 2, the trip signal is given to both SW1 and SW2, but
+                        they will not open at the same time due to the difference in their mechanical
+                        properties. Here, SW2 opens first and generates an increased voltage across
+                        its contacts. As a result, the current is redirected through C2, and the
+                        voltage across the breaker contacts increases rapidly, initiating an arc.
+                        Because the series inductor, load impedance, and series resistance create aan
+                        RLC circuit, the current will now be freewheeling through the circuit and
+                        begin to decay beacause of the underdamped oscillation. The current will
+                        flow through C2 until the voltage across C2 is less than the source voltage,and when it becomes greater than C2, diode D2 gets forward-biased. At
+                        this stage, the capacitors have a charge, and the redirecting diodes are in
+                        the OFF state.
+                    </li>
+                    <li>
+                        <b>Stage 3 :</b> In stage 3, C2 stops conducting current, D2 gets forward-biassed,
+                and SW1 has been triggered, but due to delayed operation, it still conducts
+                current. Here, because of the RL circuit, all the inductor energy will be
+                dissipated in the resistor. Since it establishes the voltage stress across the
+                breaker contacts and the rate of current decay, this stage is vital to the
+                breaker’s operation.
+                    </li>
+                    <li>
+                        <b>Stage 4 :</b> Here, SW1 opens and reroutes the current via C1 until the voltage
+                across C1 is less than the voltage at the source. The current will now be
+                running through an RLC circuit and it will start to decay, like in step 2.
+                    </li>
+                    <li>
+                        <b>Stage 5 :</b> D1 begins to conduct at this point because the voltage across
+                        C2 is higher than the source voltage. Thus, the current flows through an
+                        RL circuit, and any inductor energy remaining will be consumed by the
+                        resistive component. Now that the current direction has changed, the RL
+                        circuit will have a reverse DC voltage across it, which aids in achieving zerocrossover and rapid current decay.
+                    </li>
+                    <li>
+                        <b>Stage 6 :</b> The RLC circuit consisting of C1 and C2, line inductance, series
+                resistance, and dc source causes voltages at C1 and C2 to decay to half the
+                dc source once the current crosses zero and reverses direction, causing D1
+                and D2 to turn off. In this state, there will be very little oscillating current
+                since the capacitors have very little energy stored in them. By using a
+                low-cost isolating series ac breaker and huge resistors connected in parallel
+                with the capacitors, this capacitive energy can be depleted at the end of
+                this stage.
+                    </li>
+                </ol> 
+                <h3>Operation</h3>
+                <hr />
+                <p>
+                    The circuit is assembled step by step, with components soldered onto a copper
+board. Additional connections are made from the board to components that
+cannot be soldered directly. Initially, both mechanical switches (relays) are closed
+to test the circuit under normal conditions, excluding relay 3 from the circuit.
+The relays, current sensors, and voltage sensor are connected to an Arduino UNO
+for monitoring values via the serial monitor and to provide the VCC and ground
+to the same.
+A 12V battery provides power to the circuit, causing the bulb (load) to
+illuminate, indicating current flow, measured at 2A by the current sensor.
+TA multimeter registers a reading of 11.5V across the load, confirming proper
+functionality of the relays and other circuit elements. During normal operation,
+diodes and capacitors do not conduct any current.
+                </p>
+                <p>
+                    An overload fault is given as the fault condition for testing the circuit. A 21W
+bulb, connected in parallel to the existing load is used for giving the overload
+case. Initially the 9w additional load is excluded from the circuit, resulting in
+normal operation. When the connection is given, the additional load comes into
+play, causing an overload in the circuit. When the current sensor measures a
+current more than the normal current, relay2 opens as per the code given to
+Arduino UNO. Then the current is redirected through the capacitor C2, causing
+it to charge. When the charge across capacitor exceeds source voltage, diode
+D1 is forward biased. Now the fault current flows through D1 forming an RL
+circuit. After the capacitor voltage exceeds supply voltage, relay 1 is also opened
+allowing the capacitor C1 to reroute the current, until the voltage across the C1
+exceeds source voltage. Then the diode D2 is turned on. Now due to the reverse DC voltage across the RL circuit, the fault current decays fast and zero crossing
+occurs. At this time, as per the code, when the current sensor near relay 3 shows
+negative values causing relay3 to open. Here relay3 is used instead of the ac
+breaker.
+                </p>
+                <h3>Microcontroller Algorithm</h3>
+                <hr />
+                    <ol>
+                        <li>
+                            <b>Define Constants and Pin Assignments:</b><br />
+<div class = "algo">- Define constant values like battery voltage and pin assignments for switches and
+sensors.<br/></div>
+                        </li>
+                        <li><b>
+                            Setup Function:</b><br />
+                            <div class = "algo">- Initialize serial communication.<br />
+- Set pin modes for switches as OUTPUT.<br />
+- Turn off all switches initially.<br /></div>
+                        </li>
+                        <li>
+                            <b>Loop Function:</b><br />
+                            <div class = "algo">- Read the current from the sensor connected to CS2.<br />
+- Print the current load if it’s greater than 0.25 Amperes.<br />
+- If the load current exceeds 2.5 Amperes:<br />
+- Print ”Over Current”.<br />
+- Open switch SW2 and print ”SW2 off”.<br />
+- Wait until the voltage is greater than the specified battery voltage.<br />
+- Print the voltage.<br />
+- Close switch SW1 and print ”SW1 off”.<br />
+- Read current values from sensors CS1 and CS2.<br />
+- Wait until both current values become zero.<br />
+- Print ”Current Value Negative”.<br />
+- Open switch SW3 and print ”SW3 off”.<br />
+- Print ”Please remove load and reconnect”.<br />
+- Enter an infinite loop.<br /></div>
+                        </li>
+                        <li><b>
+                            Read Voltage Function:</b><br />
+                            <div class = "algo">- Read the voltage from the voltage sensor (VS1).<br />
+- Convert the raw analog reading to actual voltage.<br /></div>
+                        </li>
+                        <li><b>
+                            Read Current Function:</b><br />
+                            <div class = "algo">- Read the current from the specified analog pin (analogIn).<br />
+- Calculate the voltage and current using calibration values.<br />
+- Return the current value.<br /></div>
+                        </li>
+                    </ol>
+                <h3>Hardware Setup</h3>
+                <hr />
+                <img src = "./Screenshot (8).png" alt = "Hardware Setup" />
+                <h3>Result</h3>
+                <hr />
+                <p>
+                    Initially the circuit is connected to the power supply with only a bulb load, relays
+in the normally closed mode, the circuit maintained a stable current draw of
+around 2A. Upon simulating an overload scenario by introducing an additional
+bulb in parallel, an inrush current of approximately 7.3A was observed. The
+circuit promptly detected this overload condition and successfully sent a tripping
+signal to the relays, as indicated by the serial monitor messages and timestamped
+interruptions. After tripping, the circuit effectively isolated itself from the power
+supply, ensuring safety. The hardware testing has yielded promising results,
+affirming its functionality and reliability in monitoring and responding to load
+variations.
+                </p>
+                <img src="./Screenshot (9).png" alt = "Result"/>
+                <h3>Conclusion</h3>
+                <hr />
+                <p>
+                    The proposed hybrid bipolar DC circuit breaker generates a current zero-crossing
+in the dc switch by reversing and re-routing the current and causes current decay
+with minimal arc using two series relay switches, commutating capacitors, and
+redirecting diodes. Hardware result show satisfactory performance in current
+breaking, which keeps both current disruption time and transient over voltages
+below that of the available mechanical or hybrid breakers and limited to the source
+voltage. The capacitors along with diodes clamp the voltage, which occurs during
+the fault, within the permissible limits. It is shown that rapid fault interruption
+is achieved and no significant arc occurs between relay contacts. The flawless
+operation of semiconductor devices, including current sensors, voltage sensors,
+and relays, significantly contributes to the dependable functionality of the circuit.
+These meticulously selected components ensure precise monitoring and control,
+thereby enhancing the overall reliability and performance of the system. The
+parallel capacitors and diodes within our system efficiently reroutes fault currents,
+leveraging the inherent inductance to establish an RLC circuit. This strategic
+arrangement significantly reduces fault currents, thereby mitigating potential
+damage to the power distribution network.
+                </p>
+    </body>
+</html>

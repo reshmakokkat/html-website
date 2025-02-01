@@ -1,0 +1,30 @@
+body{
+    padding: 10px 50px;
+    font-family: "Libre Baskerville";
+}
+h2{
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bolder;
+    font-size: xx-large;
+    color: brown;
+}
+p{
+    line-height: 0.6cm;
+}
+img{
+    padding: 0% 25%;
+    height: 350px;
+    width:500px
+}
+h3{
+    font-size: x-large;
+    text-transform: uppercase;
+    color: darkred;
+}
+li{
+    padding : 5px;
+}
+.algo{
+    font-style: italic;
+}
